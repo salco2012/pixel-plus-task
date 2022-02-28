@@ -17,3 +17,25 @@ function chessGenerate() {
 }
 
 chessGenerate();
+
+// Функция создания ладьи
+function creationRook(nameClass, width) {
+  const rook = document.createElement('img');
+  rook.classList.add(nameClass);
+  rook.src = 'https://img.icons8.com/stickers/50/000000/rook.png';
+  rook.width = width;
+  return rook;
+}
+
+// Функция отвечающая за передвижение фигур по доске
+function rookMoving() {
+  const cells = document.querySelectorAll('.cell-new');
+  const rook_1 = creationRook('rook-1', 45);
+  const rook_2 = creationRook('rook-2', 45);
+
+  // Установили изначальные позиции
+  cells[0].append(rook_1);
+  cells[5].append(rook_2);
+}
+
+rookMoving();

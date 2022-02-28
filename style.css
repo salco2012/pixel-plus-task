@@ -1,24 +1,26 @@
 .board {
-   width: 600px;
-   height: 600px;
-   outline: 2px solid black;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   
+  width: 600px;
+  height: 600px;
+  outline: 2px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .cell-new {
-   width: 75px;
-   height: 75px;
-   float: left;
+  width: 75px;
+  height: 75px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .black {
-   background-color: black;
+  background-color: black;
 }
 
 .light {
-   background-color: rgb(255, 247, 203);
+  background-color: rgb(255, 247, 203);
 }
