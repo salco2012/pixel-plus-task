@@ -119,8 +119,8 @@ function rookMoving() {
 
         // Переменная отвечающая за возможность хода
         const moveAllowed =
-          position_rook_x === position_cell_x ||
-          (position_rook_y === position_cell_y && !currentCell.children.length);
+          position_rook_x === position_cell_x &&
+            !currentCell.children.length || position_rook_y === position_cell_y && !currentCell.children.length;
 
         // Размещаем фигурку в указанную ячейку
         if (moveAllowed) {
