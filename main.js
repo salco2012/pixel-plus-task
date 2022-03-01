@@ -20,38 +20,44 @@ chessGenerate();
 
 function cellNumbering() {
   const cells = document.querySelectorAll('.cell-new');
+  const xPosition = [];
+
+  for (let i = 0; i < 8; i++) {
+    xPosition.push('8', '7', '6', '5', '4', '3', '2', '1');
+  }
+
   for (let i = 0; i < cells.length; i++) {
     if (i >= 0 && i <= 7) {
-      cells[i].classList.add('y-A');
-      cells[i].classList.add(`x-8`);
+      cells[i].setAttribute('data-position-y', 'A');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 8 && i <= 15) {
-      cells[i].classList.add('y-B');
-      cells[i].classList.add(`x-7`);
+      cells[i].setAttribute('data-position-y', 'B');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 16 && i <= 23) {
-      cells[i].classList.add('y-C');
-      cells[i].classList.add(`x-6`);
+      cells[i].setAttribute('data-position-y', 'C');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 24 && i <= 31) {
-      cells[i].classList.add('y-D');
-      cells[i].classList.add(`x-5`);
+      cells[i].setAttribute('data-position-y', 'D');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 32 && i <= 39) {
-      cells[i].classList.add('y-E');
-      cells[i].classList.add(`x-4`);
+      cells[i].setAttribute('data-position-y', 'E');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 40 && i <= 47) {
-      cells[i].classList.add('y-F');
-      cells[i].classList.add(`x-3`);
+      cells[i].setAttribute('data-position-y', 'F');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 48 && i <= 55) {
-      cells[i].classList.add('y-G');
-      cells[i].classList.add(`x-2`);
+      cells[i].setAttribute('data-position-y', 'G');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
     if (i >= 56 && i <= 63) {
-      cells[i].classList.add('y-H');
-      cells[i].classList.add(`x-1`);
+      cells[i].setAttribute('data-position-y', 'H');
+      cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
   }
   console.log(cells);
@@ -69,7 +75,7 @@ function creationRook(nameClass, width) {
 }
 
 // Функция отвечающая за передвижение фигур по доске
-function rookMoving() {
+function rookStartPosition() {
   const cells = document.querySelectorAll('.cell-new');
   const rook_1 = creationRook('rook-1', 45);
   const rook_2 = creationRook('rook-2', 45);
@@ -77,6 +83,34 @@ function rookMoving() {
   // Установили изначальные позиции
   cells[0].append(rook_1);
   cells[5].append(rook_2);
+
+  cells.forEach((item) => {
+    item.addEventListener('click', rookMoving);
+  });
+
+  // 2 ладьи
+  const rooks = document.querySelectorAll('img');
+
+  let currentRooks;
+  rooks.forEach((item) => {
+    item.addEventListener('click', function (event) {
+      currentRooks = event.target;
+    });
+  });
 }
 
-rookMoving();
+rookStartPosition();
+
+function rookMoving(event) {
+  // Текущая ячейка по которой был совершен клик
+  const currentCell = event.currentTarget;
+
+  //   currentCell.append(currentRooks);
+}
+
+// Посмотреть как реализованно передвижение фигур у других
+// Поменять координаты классы на дата атрибуты
+// При клике на ладью, сохранять ее в переменную
+// Передвигать ладью на указанную клетку (помещать в div)
+// Делать проверку, чтоб ладья двигалась только вертикально и горизонтально
+// если на пути встречается другая ладья, ход невозможен

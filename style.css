@@ -24,3 +24,7 @@
 .light {
   background-color: rgb(255, 247, 203);
 }
+
+.select-rook {
+   border: 2px solid green;
+}
