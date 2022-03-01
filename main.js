@@ -93,22 +93,45 @@ function rookStartPosition() {
   let currentRooks;
 
   rooks.forEach((rook) => {
-    rook.addEventListener('click', function(event) {
+    rook.addEventListener('click', function (event) {
       currentRooks = event.target;
-      console.log('currentRooks', currentRooks);
     });
   });
 
-      cells.forEach((cell) => {
-        cell.addEventListener('click', function (event) {
-          const currentCell = event.target;
+  cells.forEach((cell) => {
+    cell.addEventListener('click', function (event) {
+      const currentCell = event.target;
 
-          if (currentCell.classList.contains('cell-new')) {
-             currentCell.appendChild(currentRooks);
-          }
-            console.log('currentRooks2', currentRooks);
-        });
-      });
+      // Позиция выбранной ладьи
+      let position_rook_x;
+      let position_rook_y;
+
+      if (currentRooks) {
+        position_rook_x =
+          currentRooks.parentElement.getAttribute('data-position-x');
+        position_rook_y =
+          currentRooks.parentElement.getAttribute('data-position-y');
+      }
+
+      if (currentCell.classList.contains('cell-new') && currentRooks) {
+        const position_cell_x = currentCell.getAttribute('data-position-x');
+        const position_cell_y = currentCell.getAttribute('data-position-y');
+
+        console.log('position_rook_x', position_rook_x);
+        console.log('position_rook_y', position_rook_y);
+        console.log('************');
+        console.log('position_cell_x', position_cell_x);
+        console.log('position_cell_y', position_cell_y);
+
+        if (
+          position_rook_x === position_cell_x ||
+          position_rook_y === position_cell_y
+        ) {
+          currentCell.appendChild(currentRooks);
+        }
+      }
+    });
+  });
 }
 
 rookStartPosition();
