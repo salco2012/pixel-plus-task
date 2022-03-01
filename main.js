@@ -1,3 +1,4 @@
+// Функция для генерации доски с ячейками
 function chessGenerate() {
   const board = document.querySelector('.board');
 
@@ -18,6 +19,7 @@ function chessGenerate() {
 
 chessGenerate();
 
+// Добавляем атрибуты позиционирования
 function cellNumbering() {
   const cells = document.querySelectorAll('.cell-new');
   const xPosition = [];
@@ -74,22 +76,20 @@ function creationRook(nameClass, width) {
 }
 
 // Функция отвечающая за передвижение фигур по доске
-function rookStartPosition() {
+function rookMoving() {
   const cells = document.querySelectorAll('.cell-new');
-  const rook_1 = creationRook('rook-1', 45);
-  const rook_2 = creationRook('rook-2', 45);
+
+  const rook_1 = creationRook('rook-1', 32);
+  const rook_2 = creationRook('rook-2', 32);
 
   // Установили изначальные позиции
   cells[0].append(rook_1);
   cells[5].append(rook_2);
 
-  cells.forEach((item) => {
-    item.addEventListener('click', rookMoving);
-  });
-
   // 2 ладьи
   const rooks = document.querySelectorAll('img');
 
+  // Текущая фигурка (ладья)
   let currentRooks;
 
   rooks.forEach((rook) => {
@@ -117,10 +117,13 @@ function rookStartPosition() {
         const position_cell_x = currentCell.getAttribute('data-position-x');
         const position_cell_y = currentCell.getAttribute('data-position-y');
 
-        if (
+        // Переменная отвечающая за возможность хода
+        const moveAllowed =
           position_rook_x === position_cell_x ||
-          (position_rook_y === position_cell_y && !currentCell.children.length)
-        ) {
+          (position_rook_y === position_cell_y && !currentCell.children.length);
+
+        // Размещаем фигурку в указанную ячейку
+        if (moveAllowed) {
           currentCell.appendChild(currentRooks);
         }
       }
@@ -128,18 +131,4 @@ function rookStartPosition() {
   });
 }
 
-rookStartPosition();
-
-function rookMoving(event) {
-  // Текущая ячейка по которой был совершен клик
-  const currentCell = event.currentTarget;
-
-  //   currentCell.append(currentRooks);
-}
-
-// Посмотреть как реализованно передвижение фигур у других
-// Поменять координаты классы на дата атрибуты +
-// При клике на ладью, сохранять ее в переменную
-// Передвигать ладью на указанную клетку (помещать в div)
-// Делать проверку, чтоб ладья двигалась только вертикально и горизонтально
-// если на пути встречается другая ладья, ход невозможен
+rookMoving();

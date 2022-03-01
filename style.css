@@ -26,5 +26,29 @@
 }
 
 .select-rook {
-   border: 2px solid green;
+  border: 2px solid green;
+}
+
+@media screen and (max-width: 800px) {
+  .board {
+    width: 360px;
+    height: 360px;
+  }
+  .cell-new {
+    width: 45px;
+    height: 45px;
+  }
+  /* 800х600 */
+}
+
+@media screen and (max-width: 390px) {
+  /* 390х844 */
+  .board {
+    width: 240px;
+    height: 240px;
+  }
+    .cell-new {
+    width: 30px;
+    height: 30px;
+  }
 }
