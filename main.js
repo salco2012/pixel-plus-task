@@ -60,7 +60,6 @@ function cellNumbering() {
       cells[i].setAttribute('data-position-x', `${xPosition[i]}`);
     }
   }
-  console.log(cells);
 }
 
 cellNumbering();
@@ -92,11 +91,24 @@ function rookStartPosition() {
   const rooks = document.querySelectorAll('img');
 
   let currentRooks;
-  rooks.forEach((item) => {
-    item.addEventListener('click', function (event) {
+
+  rooks.forEach((rook) => {
+    rook.addEventListener('click', function(event) {
       currentRooks = event.target;
+      console.log('currentRooks', currentRooks);
     });
   });
+
+      cells.forEach((cell) => {
+        cell.addEventListener('click', function (event) {
+          const currentCell = event.target;
+
+          if (currentCell.classList.contains('cell-new')) {
+             currentCell.appendChild(currentRooks);
+          }
+            console.log('currentRooks2', currentRooks);
+        });
+      });
 }
 
 rookStartPosition();
@@ -109,7 +121,7 @@ function rookMoving(event) {
 }
 
 // Посмотреть как реализованно передвижение фигур у других
-// Поменять координаты классы на дата атрибуты
+// Поменять координаты классы на дата атрибуты +
 // При клике на ладью, сохранять ее в переменную
 // Передвигать ладью на указанную клетку (помещать в div)
 // Делать проверку, чтоб ладья двигалась только вертикально и горизонтально
