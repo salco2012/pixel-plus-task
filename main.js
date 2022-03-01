@@ -117,15 +117,9 @@ function rookStartPosition() {
         const position_cell_x = currentCell.getAttribute('data-position-x');
         const position_cell_y = currentCell.getAttribute('data-position-y');
 
-        console.log('position_rook_x', position_rook_x);
-        console.log('position_rook_y', position_rook_y);
-        console.log('************');
-        console.log('position_cell_x', position_cell_x);
-        console.log('position_cell_y', position_cell_y);
-
         if (
           position_rook_x === position_cell_x ||
-          position_rook_y === position_cell_y
+          (position_rook_y === position_cell_y && !currentCell.children.length)
         ) {
           currentCell.appendChild(currentRooks);
         }
